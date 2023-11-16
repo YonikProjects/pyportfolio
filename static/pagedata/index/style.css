@@ -1,0 +1,205 @@
+body {
+  background-color: #ff2db1;
+}
+a {
+  color: #fff;
+}
+.container-content {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.container-content .animation-box {
+  height: 100%;
+  transition: transform 0.2s;
+}
+.container-content .animation-box > a {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+}
+.container-content .animation-box:hover {
+  transform: scale(1.1);
+}
+.container-content > div {
+  overflow: hidden;
+  max-height: 80vh;
+  width: 50%;
+}
+.container-content > div:first-child {
+  width: 100%;
+}
+@media screen and (orientation: landscape) {
+  .container-content > div:first-child > div > a {
+    width: 80%;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.container-content > div .content-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  margin-top: 5%;
+  margin-bottom: 0;
+}
+.container-content > div .content-top p:not(.sub-text) {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+.container-content > div .content-top .sub-text {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+}
+.container-content > div .content-bottom {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80%;
+}
+.container-content > div .content-bottom img {
+  top: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+#first {
+  background-color: #e2e634;
+}
+#second {
+  background-color: #2cffee;
+}
+#third {
+  background-color: #20e8bc;
+}
+#forth,
+#fifth {
+  background-color: #f14e2e;
+}
+@media (max-width: 768px) and (orientation: portrait) {
+  .container-content {
+    flex-direction: column;
+  }
+  .container-content > div {
+    height: 45vh;
+    width: 100%;
+  }
+  .container-content > div .content-bottom img {
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+.contact-form {
+  width: 70vw;
+  margin: 10vh auto;
+}
+.contact-form > p {
+  margin-bottom: 5vh;
+  font-size: 24px;
+  font-weight: 700;
+}
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-form form .input-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.contact-form form .input-group > div {
+  margin-bottom: 10px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+.contact-form form .input-group input[type="text"],
+.contact-form form .input-group input[type="email"],
+.contact-form form .input-group input[type="tel"],
+.contact-form form .input-group textarea {
+  color: #fff;
+  font-family: Poppins;
+}
+.contact-form form .input-group textarea {
+  max-height: 3rem;
+  resize: none;
+}
+.contact-form form .input-group.message > div {
+  width: 100%;
+}
+.contact-form form .input-group.submit {
+  justify-content: end;
+}
+.contact-form form .input-group.submit > div {
+  width: auto;
+  transition: transform 0.2s;
+}
+.contact-form form .input-group.submit > div:hover {
+  position: relative;
+  transform: scale(1.2);
+}
+.contact-form form .input-group.submit > div input {
+  padding: 0;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  font-size: 16px;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form textarea:focus {
+  border-bottom: 4px solid white;
+}
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
+.contact-form input[type="tel"]::placeholder,
+.contact-form textarea::placeholder {
+  color: #ffffffb3;
+}
+.contact-form label {
+  color: #fff;
+}
+.contact-form input[type="submit"] {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: Poppins;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .input-group:not(.submit) {
+    flex-direction: column;
+  }
+  .input-group:not(.submit) > div {
+    margin-bottom: 20px;
+    width: 100% !important;
+  }
+  .input-group.submit > div {
+    width: auto;
+    transition: transform 0.2s;
+  }
+  .input-group.submit > div:hover {
+    position: relative;
+    transform: scale(1.2);
+  }
+  .input-group.submit > div input {
+    padding: 0;
+  }
+}

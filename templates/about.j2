@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dima | About</title>
+    <meta name="title" content="Dima | About" />
+    <meta name="description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
+      developer, I thrive in the digital realm, driven by curiosity and
+      a love for challenges." />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dmitrypol.com/" />
+    <meta property="og:title" content="Dima | About" />
+    <meta property="og:description" content="Hello! I'm Dmitry, but my friends
+    affectionately call me 'Dima'. As a budding full-stack developer, the
+    digital realm is my playground. My journey in the tech world has been
+    nothing short of adventurous, fueled by my innate curiosity and a passion
+    for taking on new challenges." />
+    <meta property="og:image" content="/og/about.png" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav"> {% include 'components/navbar.j2' %}
+    </div>
+    <div class="about-container">
+        <div class="about-container-left">
+            <div class="about-content left">
+                <img src="/dimaphoto.png" />
+                <div>
+                    <p>Dmitry</p>
+                    <p>Poleshcuk</p>
+                    <p class="p-pronouns">(He/Him)</p>
+                    <p class="p-profession">Web Developer</p>
+                    <br />
+                    <div class="social-icons">
+                        <a href="https://wa.me/972528706038">
+                            <img src="/icons/whatsapp.png" /></a><a href="mailto:dima@dmitrypol.com"><img
+                                src="/icons/mail.png" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about-container-right">
+            <div class="about-content right">
+                <p>About me</p>
+                <p class="subheader" id="quirk">Harmonizing code and Design</p>
+                <p>
+                    Hello! I'm Dmitry Poleshcuk, a 28-years-old passionate full-stack
+                    programmer who's recently made Holon my new home. With an unwavering
+                    enthusiasm for technology, I've always sought to expand my horizons
+                    and embrace new learning opportunities. My foundational expertise
+                    lies in Javascript and TypeScript, but my toolbelt doesn't end
+                    there.
+                </p>
+                <p>
+                    In the dynamic world of web development, I've dvelved deep into
+                    technologies such as NodeJS, utilizing various npm libraries, PHP,
+                    React, and Electron. My hands-on experience has allowed me to
+                    harness these tools effectively, crafting solutions that are both
+                    robust and efficient.
+                </p>
+                <p>
+                    My dedication to creating meaningful digital solutions is
+                    demonstrated through my professional journey. At my last workplace,
+                    I developed two instrumental NodeJS projects that transformed into
+                    core operational tools for the organization. Now, as I settle into
+                    Holon, I am on the lookout for my next exhilarating challenge, eager
+                    to bring innovation and value to new avenues.
+                </p>
+                <p>
+                    This Portfolio showscases latest work i've made in development. I
+                    built this website from practically scratch using Vite as a build
+                    tool to compress all vital components and SCSS to put every element
+                    exactly where it needs to be. Enjoy scrolling!
+                </p>
+                <div class="carousel">
+                    <button class="carousel-arrow left-arrow">
+                        <img src="/arrows/left.png" />
+                    </button>
+                    <div class="carousel-track">
+                        <!-- Placeholder images for demonstration -->
+                    </div>
+                    <button class="carousel-arrow right-arrow">
+                        <img src="/arrows/right.png" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='/pagedata/about/about.js') }}"></script>
+</body>
+
+</html>

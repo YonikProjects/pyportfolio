@@ -1,0 +1,12 @@
+<div hx-trigger="intersect" class="post-container" style="background-color: {{post.post.background_color}}"
+    id="{{post.post.link}}">
+    <div class="post" style="color: {{post.post.Text_Color}} ">
+        <div class="left-post">
+            <h1>{{post.post.title}}</h1>
+            <img src="/imgproxy/{{post.post.Title_Image['id']}}.png" />
+        </div>
+        <div class="right-post-body">
+            <div>{{post.parse_body()}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dima | Projects</title>
+  <meta name="title" content="Dima | Projects" />
+  <meta name="description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
+      developer, I thrive in the digital realm, driven by curiosity and
+      a love for challenges." />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dmitrypol.com/" />
+  <meta property="og:title" content="Dima | Projects" />
+  <meta property="og:description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
+      developer, I thrive in the digital realm, driven by curiosity and
+      a love for challenges." />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/projects/projects.css') }}" />
+
+</head>
+
+<body style="background-color: {{ post.post.background_color }};">
+  <div class="topnav {% if post.post.Text_Color == '#FFFFFF' %}
+     white
+{% else %}
+     black
+{% endif %}" id="myTopnav"> {% include '/components/navbar.j2' %}
+  </div>
+  <div class="single-post-container">{% with post=post %}
+    {% include "components/post.j2" %}
+    {% endwith %}
+
+  </div>
+  <script>
+    let nextPost = {{ post.remaining_post_ids() }};
+  </script>
+
+  <script src="{{ url_for('static', filename='/scripts/zoom.js') }}"></script>
+  <script src="{{ url_for('static', filename='/pagedata/projects/projects.js') }}"></script>
+  <script src="{{ url_for('static', filename='/pagedata/index/samsung.js') }}"></script>
+  <script src="{{ url_for('static', filename='/scripts/htmx.min.js') }}"></script>
+</body>
+
+</html>

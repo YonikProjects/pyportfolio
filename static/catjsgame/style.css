@@ -1,0 +1,69 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* border: dotted green 1px; */
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* test */
+body {
+  background-color: rgb(253, 242, 208);
+}
+
+#buttonRow {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* 
+#hideCatsBttn {
+    /* color: white; */
+/* background-color: green; */
+/* } */
+
+*/ .hidden {
+  visibility: hidden;
+}
+
+.aCat {
+  max-width: 150px;
+  width: 19%;
+  background-color: whitesmoke;
+  border: 1px black solid;
+  border-radius: 10px;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+}
+
+#spawnAmnt {
+  max-width: 50px;
+}
+
+#gameInfo {
+  text-align: center;
+}
+
+#scoreBoard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.catFieldLine {
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+}
+
+#winMsg {
+  text-align: center;
+}
+
+#pageHead {
+  text-align: center;
+}

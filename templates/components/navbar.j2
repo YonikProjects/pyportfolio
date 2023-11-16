@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='/navbar/navbar.css') }}" />
+<div class="left">
+  <a id="devIcon" href="/">&lt;/&gt;</a>
+  <a id="name-navbar" href="/">Dima</a>
+</div>
+<div class="right">
+  <a href="/projects/">
+    <p id="projects-link">Projects</p>
+  </a>
+  <a href="/#contact">
+    <p>Contact</p>
+  </a>
+  <a href="/about">
+    <p id="about-link">About</p>
+  </a>
+  <a href="#" class="icon navbarAction">
+    <img src="/navbar/hamburger.png" />
+  </a>
+</div>
+<div class="corner">
+  <a href="#" class="navbarAction"> <img src="/navbar/close.png" /> </a>
+</div>
+<script src="{{ url_for('static', filename='/navbar/navbar.js') }}"></script>

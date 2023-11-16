@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dima | Full-Stack Developer</title>
+  <meta name="title" content="Dima | Full-Stack Developer" />
+  <meta name="description" content="Hello! I'm Dmitry, or 'Dima' to friends.
+    As a full-stack developer, I thrive in the digital realm, driven by
+    curiosity and a love for challenges." />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dmitrypol.com/" />
+  <meta property="og:title" content="Dima | Full-Stack Developer" />
+  <meta property="og:description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
+      developer, I thrive in the digital realm, driven by curiosity and
+      a love for challenges." />
+  <meta property="og:image" content="/og/index.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/samsung.css') }}" />
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+</head>
+
+<body>
+  <div class="topnav" id="myTopnav">
+    {% include '/components/navbar.j2' %}
+  </div>
+  <div class="container hero">
+    <div class="hero-container">
+      <div class="image-container">
+        <img src="dimaphoto.png" alt="Dima" />
+      </div>
+      <div class="text-container">
+        <div>
+          <p id="variant1">
+            Hello! I'm Dmitry, or "Dima" to friends. As a full-stack
+            developer, I thrive in the digital realm, driven by curiosity and
+            a love for challenges.
+          </p>
+          <p id="variant2">
+            Hello! I'm Dmitry, but my friends affectionately call me "Dima".
+            As a budding full-stack developer, the digital realm is my
+            playground. My journey in the tech world has been nothing short of
+            adventurous, fueled by my innate curiosity and a passion for
+            taking on new challenges.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-container">
+      <p id="scrollText">Scroll down for more!</p>
+    </div>
+  </div>
+  <div class="container-content" id="projects">
+    {% for preview in previews %}
+    <div class="content-box" style="background-color:{{preview.background_color}} ;">
+      <div class="animation-box">
+        <a href="/projects/{{preview.link}}">
+          <div class="content-top">
+            <p>{{preview.title}}</p>
+            {% if preview.subname %}
+            <p class="sub-text">{{preview.subname}}</p>
+            {% endif %}
+          </div>
+          <div class="content-bottom">
+            <img src="/imgproxy/{{preview.Title_Image['id']}}.png" alt="Car Expense Calculator Project" />
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="contact-form" id="contact">{% include '/components/form.j2' %}</div>
+  <script src="{{ url_for('static', filename='/pagedata/index/samsung.js') }}"></script>
+</body>
+
+</html>

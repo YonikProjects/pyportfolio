@@ -1,0 +1,7 @@
+<div class="next-post next-trigger" style="background-color: {{post.background_color}}; color: {{post.Text_Color}};"
+    hx-post="/projects/{{post.link}}" hx-trigger="revealed" hx-swap="afterend">
+    <div>
+        <p>Next Project: {{ post.title }}</p>
+        <p class="htmx-indicator">Loading...</p>
+    </div><img {% if post.Text_Color=="#000000" %} style="filter: invert(1)" {% endif %} src="/arrows/down.png" />
+</div>

@@ -1,0 +1,247 @@
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Black.ttf) format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-BlackItalic.ttf) format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-BoldItalic.ttf) format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-ExtraBold.ttf) format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-ExtraBoldItalic.ttf) format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-ExtraLight.ttf) format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-ExtraLightItalic.ttf) format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Italic.ttf) format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Light.ttf) format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-LightItalic.ttf) format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-MediumItalic.ttf) format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-SemiBold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-SemiBoldItalic.ttf) format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-Thin.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: url(/fonts/Poppins/Poppins-ThinItalic.ttf) format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: Barriecito;
+  src: url(/fonts/Barriecito-Regular.ttf);
+}
+:target {
+  padding-top: 70px;
+  margin-top: -70px;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: Poppins;
+  box-sizing: border-box;
+  background-color: #ff2db1;
+  margin: 0;
+}
+body {
+  color: #fff;
+}
+a:link,
+a:visited {
+  text-decoration: none;
+}
+.corner {
+  display: none;
+}
+.corner a {
+  color: #fff;
+}
+#devIcon,
+#name-navbar {
+  color: #000;
+  font-family: Barriecito;
+  font-size: 36px;
+  text-align: center;
+}
+#name-navbar {
+  padding-left: 0;
+}
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.topnav:not(.responsive) a {
+  transition: transform 0.2s;
+}
+.topnav:not(.responsive) a:hover {
+  transform: scale(1.2);
+}
+.topnav a {
+  color: #fff;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.topnav.black a {
+  color: #000;
+}
+.topnav.white a {
+  color: #fff;
+}
+.topnav a p {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0;
+}
+.topnav a p:active {
+  font-weight: 700;
+}
+.topnav .left,
+.topnav .right {
+  display: flex;
+  align-items: center;
+}
+.topnav .icon {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .topnav a:not(#devIcon):not(#name-navbar):not(.navbarAction) {
+    display: none;
+  }
+  .topnav.responsive .corner {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .topnav.responsive .icon {
+    display: none;
+  }
+  .topnav a.navbarAction {
+    display: block;
+    transition: transform 0.2s;
+  }
+  .topnav a.navbarAction:hover {
+    transform: scale(1.2);
+  }
+  .navbarAction {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+  }
+  .navbarAction img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  #name-navbar {
+    display: none;
+  }
+  .topnav.responsive .right {
+    top: 70px;
+    flex-direction: column;
+    align-items: flex-end;
+    right: 0;
+    width: 25%;
+    position: absolute;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+  .topnav.responsive .right p {
+    display: flex;
+    justify-content: right;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.2s;
+  }
+  .topnav.responsive .right p:hover {
+    font-weight: 700;
+  }
+  .topnav.responsive a:not(#devIcon):not(#name-navbar):not(.icon) {
+    display: block !important;
+    text-align: right;
+  }
+  .topnav.responsive a:not(#devIcon):not(#name-navbar):not(.navbarAction) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Cats Game</title>
+
+</head>
+<h1 id="pageHead">AAAA CATS are taking OVER!!!</h1>
+
+<body>
+    <div id="buttonRow">
+        <span id="CatInput">
+            <input id="spawnAmnt" type="number" placeholder="How many cats?" value="20">
+        </span>
+        <button onclick="spawnCats()">Spawn / Reset</button>
+        <button id="hideCatsBttn" onclick="hideCats()" disabled>Hide And Start</button>
+        <button id="hideCatsBttn" onclick="revealCats()">Reveal Cats</button>
+    </div>
+    <h2 id="gameInfo">Pick how many cats you want to spawn and then press "Hide And Start" and test</h2>
+    <div id="scoreBoard" style="visibility: hidden">
+        <span>
+            <i>Time Passed: </i>
+            <i id="timer"></i>
+        </span>
+        <span>
+            <i>Score: </i>
+            <i id="score"></i>
+        </span>
+    </div>
+    <div id="CatField"></div>
+
+    </div>
+    <div id="winMsg"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>

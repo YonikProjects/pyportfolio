@@ -1,0 +1,122 @@
+.container.hero {
+  height: calc(80vh - 70px);
+  width: 70%;
+  margin: auto;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-container img {
+  max-width: 100%;
+  height: 30vh;
+}
+.text-container {
+  flex: 1;
+  padding-left: 20px;
+}
+.text-container p:not(#scrollText) {
+  font-size: 20px;
+  font-weight: 700;
+}
+.scroll-container {
+  padding-left: 29vh;
+}
+#variant1 {
+  display: none;
+}
+@media (max-width: 768px) {
+  #variant1 {
+    display: block;
+  }
+  #variant2 {
+    display: none;
+  }
+  .container.hero {
+    width: 100%;
+  }
+  .hero-container {
+    flex-direction: column;
+  }
+  .image-container img {
+    height: 30vh;
+    width: auto;
+  }
+  .scroll-container {
+    width: calc(100vw - 80px);
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text-container {
+    padding-left: 0;
+    padding-top: 0;
+    margin: auto;
+    width: calc(100vw - 80px);
+  }
+}
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .hero-container {
+    margin: auto;
+    width: 90%;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .image-container img {
+    height: 40vh;
+    width: auto;
+  }
+  .scroll-container {
+    width: auto;
+    margin-left: calc(10% + 33vh);
+  }
+}
+body.samsung-browser #variant1 {
+  display: block;
+}
+body.samsung-browser #variant2 {
+  display: none;
+}
+body.samsung-browser .container.hero {
+  width: 100%;
+}
+body.samsung-browser .hero-container {
+  flex-direction: column;
+}
+body.samsung-browser .image-container img {
+  height: 30vh;
+  width: auto;
+}
+body.samsung-browser .scroll-container {
+  width: calc(100vw - 80px);
+  padding-left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.samsung-browser .text-container {
+  padding-left: 0;
+  padding-top: 0;
+  margin: auto;
+  width: calc(100vw - 80px);
+}
+@media screen and (orientation: landscape) {
+  body.samsung-browser .hero-container {
+    margin: auto;
+    width: 90%;
+    flex-direction: row;
+    gap: 20px;
+  }
+  body.samsung-browser .image-container img {
+    height: 40vh;
+    width: auto;
+  }
+  body.samsung-browser .scroll-container {
+    width: auto;
+    margin-left: calc(10% + 33vh);
+  }
+}

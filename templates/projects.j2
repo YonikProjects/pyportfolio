@@ -23,9 +23,9 @@
 
 <body style="background-color: {{ post.post.background_color }};">
   <div class="topnav {% if post.post.Text_Color == '#FFFFFF' %}
-     white
+    white
 {% else %}
-     black
+    black
 {% endif %}" id="myTopnav"> {% include '/components/navbar.j2' %}
   </div>
   <div class="single-post-container">{% with post=post %}

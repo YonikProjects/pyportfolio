@@ -45,18 +45,19 @@ class Post:
         soup = BeautifulSoup(body, "html.parser")
         images_with_alt = soup.find_all("img", alt=True)
         for img in images_with_alt:
+            asset = img["src"].split("/")[-1]
+            img["src"] = f"/imgproxy/{asset}/article"
+            img["data-zoomable"] = True
+            img["loading"] = "lazy"
             alt_div = soup.new_tag("div")
             alt_div["class"] = "alt-text"
             alt_div.string = img["alt"]
             # Insert the new div after the parent of the image (which might be a <p> tag)
             img.insert_after(alt_div)
-        body = str(soup)
-        body = body.replace("https://cms.dmitrypol.com/assets/", "/imgproxy/")
-        body = body.replace("<img", "<img data-zoomable")
-        body = body.replace(
-            "<a", f"<a style='color: {self.post['Text_Color']}; filter: invert(100%);'"
-        )
-        return body
+        a_tags = soup.find_all("a")
+        for a in a_tags:
+            a["style"] = f"color: {self.post['Text_Color']}; filter: invert(100%);"
+        return str(soup)
 
     def remaining_post_ids(self):
         new_list = self.all_post_ids

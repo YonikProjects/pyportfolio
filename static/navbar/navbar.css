@@ -177,6 +177,9 @@ a:visited {
 .topnav a p:active {
   font-weight: 700;
 }
+.topnav.white .left {
+  filter: invert(1);
+}
 .topnav .left,
 .topnav .right {
   display: flex;
@@ -201,6 +204,9 @@ a:visited {
   .topnav a.navbarAction {
     display: block;
     transition: transform 0.2s;
+  }
+  .topnav.black a.navbarAction {
+    filter: invert(1);
   }
   .topnav a.navbarAction:hover {
     transform: scale(1.2);

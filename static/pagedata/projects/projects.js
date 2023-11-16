@@ -1,6 +1,6 @@
-mediumZoom("[data-zoomable]");
 document.body.addEventListener("htmx:trigger", async function (event) {
   if (event.target.id != "") {
+    mediumZoom("[data-zoomable]");
     history.pushState({}, "", `${event.target.id}`);
   }
 });

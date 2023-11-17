@@ -5,8 +5,8 @@ from flask import Flask, jsonify, render_template, request
 import requests
 from postpreviews import PostPreviews
 from post import Post
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient  # type: ignore
+from sendgrid.helpers.mail import Mail  # type: ignore
 
 try:
     load_dotenv()

@@ -1,7 +1,7 @@
 import sendquery
-import markdown
+import markdown  # type: ignore
 import random
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # type: ignore
 
 
 class Post:

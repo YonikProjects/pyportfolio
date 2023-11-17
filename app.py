@@ -127,4 +127,4 @@ if __name__ == "__main__":
     else:
         from waitress import serve  # type: ignore
 
-        serve(app, port=5000)
+        serve(app, port=5000, threads=12)

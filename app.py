@@ -99,7 +99,7 @@ def pickproject(link):
     return render_template("projects.j2", post=post)
 
 
-@app.route("/imgproxy/<string:url>/<string:key>")  # type: ignore
+@app.route("/imgproxy/<string:key>/<string:url>")  # type: ignore
 def proxy_image(url, key):
     # Replace 'image_url' with the URL of the image you want to proxy
     assets_url = CMS + "assets/"

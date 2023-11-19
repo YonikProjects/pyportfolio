@@ -1,16 +1,16 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='/navbar/navbar.css') }}" />
 <div class="left">
-  <a id="devIcon" href="/">&lt;/&gt;</a>
-  <a id="name-navbar" href="/">Dima</a>
+  <a id="devIcon" href="{{url_for('index')}}">&lt;/&gt;</a>
+  <a id="name-navbar" href="{{url_for('index')}}">Dima</a>
 </div>
 <div class="right">
-  <a href="/projects/">
+  <a href="{{url_for('projects')}}">
     <p id="projects-link">Projects</p>
   </a>
   <a href="/#contact">
     <p>Contact</p>
   </a>
-  <a href="/about">
+  <a href="{{url_for('about')}}">
     <p id="about-link">About</p>
   </a>
   <a class="icon navbarAction">

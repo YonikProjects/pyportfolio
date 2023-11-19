@@ -30,7 +30,7 @@
   <div class="container hero">
     <div class="hero-container">
       <div class="image-container">
-        <img src="dimaphoto.png" alt="Dima" />
+        <img src="{{ url_for('static', filename='/dimaphoto.png') }}" alt="Dima" />
       </div>
       <div class="text-container">
         <div>
@@ -57,7 +57,7 @@
     {% for preview in previews %}
     <div class="content-box" style="background-color:{{preview.background_color}} ;">
       <div class="animation-box">
-        <a href="/projects/{{preview.link}}">
+        <a href="{{url_for('singleproject', link=preview.link)}}">
           <div class="content-top">
             <p>{{preview.title}}</p>
             {% if preview.subname %}
@@ -65,7 +65,8 @@
             {% endif %}
           </div>
           <div class="content-bottom">
-            <img src="/imgproxy/{{preview.Title_Image['id']}}/thumbnails" alt="{{preview.title}} Project" />
+            <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='thumbnails')}}"
+              alt="{{preview.title}} Project" />
           </div>
         </a>
       </div>

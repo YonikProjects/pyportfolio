@@ -1,3 +1,4 @@
+from flask import url_for
 import sendquery
 import markdown  # type: ignore
 import random
@@ -46,7 +47,7 @@ class Post:
         images_with_alt = soup.find_all("img", alt=True)
         for img in images_with_alt:
             asset = img["src"].split("/")[-1]
-            img["src"] = f"/imgproxy/{asset}/article"
+            img["src"] = url_for("proxy_image", url=asset, key="article")
             img["data-zoomable"] = True
             img["loading"] = "lazy"
             alt_div = soup.new_tag("div")

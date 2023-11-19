@@ -3,7 +3,7 @@
     <div class="post" style="color: {{post.post.Text_Color}} ">
         <div class="left-post">
             <h1>{{post.post.title}}</h1>
-            <img src="/imgproxy/{{post.post.Title_Image['id']}}/thumbnails" />
+            <img src="{{url_for('proxy_image', url=post.post.Title_Image['id'], key='thumbnails')}}" />
         </div>
         <div class="right-post-body">
             <div>{{post.parse_body()}}</div>

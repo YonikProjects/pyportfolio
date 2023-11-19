@@ -29,7 +29,7 @@
     <div class="about-container">
         <div class="about-container-left">
             <div class="about-content left">
-                <img src="/dimaphoto.png" />
+                <img src="{{ url_for('static', filename='/dimaphoto.png') }}" />
                 <div>
                     <p>Dmitry</p>
                     <p>Poleshcuk</p>
@@ -38,8 +38,9 @@
                     <br />
                     <div class="social-icons">
                         <a href="https://wa.me/972528706038">
-                            <img src="/icons/whatsapp.png" /></a><a href="mailto:dima@dmitrypol.com"><img
-                                src="/icons/mail.png" /></a>
+                            <img src="{{ url_for('static', filename='/icons/whatsapp.png') }}" /></a><a
+                            href="mailto:dima@dmitrypol.com"><img
+                                src="{{ url_for('static', filename='/icons/mail.png') }}" /></a>
                     </div>
                 </div>
             </div>
@@ -79,13 +80,13 @@
                 </p>
                 <div class="carousel">
                     <button class="carousel-arrow left-arrow">
-                        <img src="/arrows/left.png" />
+                        <img src="{{ url_for('static', filename='/arrows/left.png') }}" />
                     </button>
                     <div class="carousel-track">
                         <!-- Placeholder images for demonstration -->
                     </div>
                     <button class="carousel-arrow right-arrow">
-                        <img src="/arrows/right.png" />
+                        <img src="{{ url_for('static', filename='/arrows/right.png') }}" />
                     </button>
                 </div>
             </div>

@@ -204,6 +204,7 @@ a:visited {
   .topnav a.navbarAction {
     display: block;
     transition: transform 0.2s;
+    cursor: pointer;
   }
   .topnav.black a.navbarAction {
     filter: invert(1);

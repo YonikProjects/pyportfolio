@@ -135,8 +135,8 @@ def take_screenshot(width, height):
     resolution = (width, height)  # Change this to your desired resolution
     # Configure Chrome options
     edge_options = webdriver.EdgeOptions()
-    edge_options.add_experimental_option("detach", True)
-    edge_options.set_capability("ms:inPrivate", True)
+    # edge_options.add_experimental_option("detach", True)
+    # edge_options.set_capability("ms:inPrivate", True)
     edge_options.add_argument("--headless")
     edge_options.add_argument("--hide-scrollbars")
     # To run in headless mode (without opening a window)

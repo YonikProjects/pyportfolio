@@ -1,8 +1,8 @@
-from selenium import webdriver
+import random
 from functools import lru_cache
 import os
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request, send_file
+from flask import Flask, jsonify, redirect, render_template, request, url_for
 import requests
 from postpreviews import PostPreviews
 from post import Post
@@ -63,8 +63,9 @@ def about():
 
 @app.route("/projects/")
 def projects():
-    post = Post("random")
-    return render_template("projects.j2", post=post)
+    previews = PostPreviews()
+    post = random.choice(previews.getPreviews())
+    return redirect(url_for("singleproject", link=post["link"]), code=302)
 
 
 @app.route("/projects/<string:link>", methods=["POST"])

@@ -65,7 +65,7 @@ def about():
 def projects():
     previews = PostPreviews()
     post = random.choice(previews.getPreviews())
-    return redirect(url_for("singleproject", link=post["link"]), code=302)
+    return redirect(url_for("singleproject", link=post["link"]), 303)
 
 
 @app.route("/projects/<string:link>", methods=["POST"])

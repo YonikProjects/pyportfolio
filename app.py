@@ -14,7 +14,16 @@ try:
 except OSError as e:
     raise SystemExit(f"Error loading .env file: {e}")
 
-required_envs = ["CMS", "TURNSTILE", "SENDGRID", "TOEMAIL", "FROMEMAIL", "DEV"]
+required_envs = [
+    "CMS",
+    "TURNSTILE",
+    "SENDGRID",
+    "TOEMAIL",
+    "FROMEMAIL",
+    "DEV",
+    "PRERENDER",
+    "CAPTAIN",
+]
 
 for env in required_envs:
     if env not in os.environ:
@@ -26,6 +35,8 @@ SENDGRID = os.environ["SENDGRID"]
 TOEMAIL = os.environ["TOEMAIL"]
 FROMEMAIL = os.environ["FROMEMAIL"]
 DEV = os.environ["DEV"]
+PRERENDER = os.environ["PRERENDER"]
+CAPTAIN = os.environ["CAPTAIN"]
 
 
 @lru_cache(maxsize=128)  # Limiting cache size to 128 items
@@ -116,8 +127,7 @@ def proxy_image(url, key):
 
     if image_content:
         # Get the content type of the image
-        response = requests.head(image_url)
-        content_type = response.headers.get("content-type")
+        content_type = image_content_with_headers.headers["content-disposition"]  # type: ignore
         # Set the appropriate content type for the response
         headers = {
             "Content-Type": content_type,
@@ -132,35 +142,28 @@ def proxy_image(url, key):
 @app.route("/screenshot/<int:width>/<int:height>")
 def take_screenshot(width, height):
     link = request.args.get("url")
-    resolution = (width, height)  # Change this to your desired resolution
-    # Configure Chrome options
-    edge_options = webdriver.EdgeOptions()
-    # edge_options.add_experimental_option("detach", True)
-    # edge_options.set_capability("ms:inPrivate", True)
-    edge_options.add_argument("--headless")
-    edge_options.add_argument("--hide-scrollbars")
-    # To run in headless mode (without opening a window)
-    edge_options.add_argument(
-        "--no-sandbox"
-    )  # Necessary for running in a Docker container
+    if link == "/":
+        link = ""
+    url = f"{PRERENDER}render?height={height}&width={width}&renderType=png&url={CAPTAIN}{link}"
+    print(url)
 
-    # Initialize the driver
-    driver = webdriver.Edge(options=edge_options)
+    # Fetch the image content using the cache
 
-    # Set window size based on resolution
-    driver.set_window_size(*resolution)
+    image_content_with_headers = fetch_image(url)
+    image_content = image_content_with_headers.content  # type: ignore
 
-    # Open the provided link
-    driver.get(link)  # type: ignore
-    # Take screenshot
-    screenshot_path = "screenshot.png"  # Path to save the screenshot
-    driver.save_screenshot(screenshot_path)
-
-    # Close the driver
-    driver.quit()
-
-    # Send the screenshot file as a response
-    return send_file(screenshot_path, mimetype="image/png")
+    if image_content:
+        # Get the content type of the image
+        response = image_content_with_headers.headers  # type: ignore
+        content_type = response["content-type"]
+        # Set the appropriate content type for the response
+        headers = {
+            "Content-Type": content_type,
+        }
+        # Return the image as a response
+        return image_content, 200, headers
+    else:
+        return "Failed to fetch image", 404
 
 
 if __name__ == "__main__":

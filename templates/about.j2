@@ -21,7 +21,7 @@
     nothing short of adventurous, fueled by my innate curiosity and a passion
     for taking on new challenges." />
     <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
-    _external=True, **request.view_args)) }}" />
+    _external=False, **request.view_args)) }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
 </head>

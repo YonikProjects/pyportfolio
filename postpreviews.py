@@ -4,7 +4,7 @@ query = """query {
   post {
     title
     subname
-    Title_Image { id }
+    Title_Image { id, filename_download }
     background_color
     link
   }

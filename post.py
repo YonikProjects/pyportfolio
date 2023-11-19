@@ -31,7 +31,7 @@ class Post:
         id
         title
         subname
-        Title_Image { id }
+        Title_Image { id, filename_download }
         background_color
         link
         body
@@ -47,7 +47,12 @@ class Post:
         images_with_alt = soup.find_all("img", alt=True)
         for img in images_with_alt:
             asset = img["src"].split("/")[-1]
-            img["src"] = url_for("proxy_image", url=asset, key="article")
+            img["src"] = url_for(
+                "proxy_image",
+                url=asset,
+                key="article",
+            )
+            img["data-zoom-src"] = url_for("proxy_image", url=asset, key="fullsize")
             img["data-zoomable"] = True
             img["loading"] = "lazy"
             alt_div = soup.new_tag("div")

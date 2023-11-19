@@ -31,7 +31,7 @@ DEV = os.environ["DEV"]
 def fetch_image(url):
     response = requests.get(url)
     if response.status_code == 200:
-        return response.content
+        return response
     return None
 
 
@@ -103,18 +103,25 @@ def pickproject(link):
 def proxy_image(url, key):
     # Replace 'image_url' with the URL of the image you want to proxy
     assets_url = CMS + "assets/"
-    image_url = assets_url + url + f"?key={key}"
+    if key != "fullsize":
+        image_url = assets_url + url + f"?key={key}"
+    else:
+        image_url = assets_url + url
     # Fetch the image content using the cache
-    image_content = fetch_image(image_url)
+
+    image_content_with_headers = fetch_image(image_url)
+    content_disposition = image_content_with_headers.headers["content-disposition"]
+    image_content = image_content_with_headers.content
 
     if image_content:
         # Get the content type of the image
         response = requests.head(image_url)
         content_type = response.headers.get("content-type")
-
         # Set the appropriate content type for the response
-        headers = {"Content-Type": content_type}
-
+        headers = {
+            "Content-Type": content_type,
+            "Content-Disposition": content_disposition,
+        }
         # Return the image as a response
         return image_content, 200, headers
     else:

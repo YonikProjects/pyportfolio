@@ -65,8 +65,13 @@
             {% endif %}
           </div>
           <div class="content-bottom">
+            {%- if loop.index == 1 %}
+            <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
+              alt="{{preview.title}} Project" />
+            {% else %}
             <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='thumbnails')}}"
               alt="{{preview.title}} Project" />
+            {% endif %}
           </div>
         </a>
       </div>

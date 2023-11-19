@@ -11,14 +11,17 @@
       a love for challenges." />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dmitrypol.com/" />
+    <meta property="og:url" content="url_for(request.endpoint,
+    _external=True, **request.view_args))" />
     <meta property="og:title" content="Dima | About" />
+
     <meta property="og:description" content="Hello! I'm Dmitry, but my friends
     affectionately call me 'Dima'. As a budding full-stack developer, the
     digital realm is my playground. My journey in the tech world has been
     nothing short of adventurous, fueled by my innate curiosity and a passion
     for taking on new challenges." />
-    <meta property="og:image" content="/og/about.png" />
+    <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
+    _external=True, **request.view_args)) }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
 </head>

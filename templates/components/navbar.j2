@@ -2,12 +2,13 @@
 <div class="left">
   <a id="devIcon" href="{{url_for('index')}}">&lt;/&gt;</a>
   <a id="name-navbar" href="{{url_for('index')}}">Dima</a>
+
 </div>
 <div class="right">
   <a href="{{url_for('projects')}}">
     <p id="projects-link">Projects</p>
   </a>
-  <a href="/#contact">
+  <a href="{{url_for('index', _anchor='contact')}}">
     <p>Contact</p>
   </a>
   <a href="{{url_for('about')}}">

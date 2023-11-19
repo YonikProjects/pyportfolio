@@ -1,7 +1,8 @@
+from selenium import webdriver
 from functools import lru_cache
 import os
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_file
 import requests
 from postpreviews import PostPreviews
 from post import Post
@@ -110,8 +111,8 @@ def proxy_image(url, key):
     # Fetch the image content using the cache
 
     image_content_with_headers = fetch_image(image_url)
-    content_disposition = image_content_with_headers.headers["content-disposition"]
-    image_content = image_content_with_headers.content
+    content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
+    image_content = image_content_with_headers.content  # type: ignore
 
     if image_content:
         # Get the content type of the image
@@ -126,6 +127,40 @@ def proxy_image(url, key):
         return image_content, 200, headers
     else:
         return "Failed to fetch image", 404
+
+
+@app.route("/screenshot/<int:width>/<int:height>")
+def take_screenshot(width, height):
+    link = request.args.get("url")
+    resolution = (width, height)  # Change this to your desired resolution
+    # Configure Chrome options
+    edge_options = webdriver.EdgeOptions()
+    edge_options.add_experimental_option("detach", True)
+    edge_options.set_capability("ms:inPrivate", True)
+    edge_options.add_argument("--headless")
+    edge_options.add_argument("--hide-scrollbars")
+    # To run in headless mode (without opening a window)
+    edge_options.add_argument(
+        "--no-sandbox"
+    )  # Necessary for running in a Docker container
+
+    # Initialize the driver
+    driver = webdriver.Edge(options=edge_options)
+
+    # Set window size based on resolution
+    driver.set_window_size(*resolution)
+
+    # Open the provided link
+    driver.get(link)  # type: ignore
+    # Take screenshot
+    screenshot_path = "screenshot.png"  # Path to save the screenshot
+    driver.save_screenshot(screenshot_path)
+
+    # Close the driver
+    driver.quit()
+
+    # Send the screenshot file as a response
+    return send_file(screenshot_path, mimetype="image/png")
 
 
 if __name__ == "__main__":

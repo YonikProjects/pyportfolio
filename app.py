@@ -1,5 +1,6 @@
 import random
-
+from PIL import Image
+from io import BytesIO
 from enviroments import (
     CMS,
     TURNSTILE,
@@ -109,10 +110,13 @@ def proxy_image(url, key):
         content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
         image_content = image_content_with_headers.content  # type: ignore
         # Get the content type of the image
-        content_type = image_content_with_headers.headers["content-disposition"]  # type: ignore
+        image = Image.open(BytesIO(image_content))
+        webp_buffer = BytesIO()
+        image.save(webp_buffer, "WEBP")
+        webp_buffer.seek(0)
         # Set the appropriate content type for the response
         headers = {
-            "Content-Type": content_type,
+            "Content-Type": "image/webp",
             "Content-Disposition": content_disposition,
         }
         # Return the image as a response

@@ -2,17 +2,6 @@ const carouselTrack = document.querySelector(".carousel-track");
 const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 
-function preloadNextImage(currentIndex) {
-  const nextIndex = currentIndex + 3; // Because we are showing 3 images at a time
-  if (nextIndex < imageLinks.length) {
-    const nextImg = carouselTrack.querySelectorAll("img")[nextIndex];
-    if (nextImg && nextImg.dataset.src) {
-      nextImg.src = nextImg.dataset.src;
-      delete nextImg.dataset.src;
-    }
-  }
-}
-
 let scrollTimeout;
 
 carouselTrack.addEventListener("scroll", () => {
@@ -23,8 +12,6 @@ carouselTrack.addEventListener("scroll", () => {
 
     const activeIndex = Math.round(scrollLeft / imgWidth);
     carouselTrack.scrollLeft = activeIndex * imgWidth;
-
-    preloadNextImage(activeIndex);
   }, 150);
 });
 
@@ -39,13 +26,9 @@ rightArrow.addEventListener("click", () => {
 function slide(direction) {
   const imgWidth = carouselTrack.clientWidth / 3;
   let scrollLeft = carouselTrack.scrollLeft;
-  const newIndex = Math.round((scrollLeft + imgWidth * direction) / imgWidth);
   carouselTrack.scrollLeft = scrollLeft + imgWidth * direction;
-
-  preloadNextImage(newIndex);
 }
 document.addEventListener("DOMContentLoaded", async function () {
-  renderImages();
   const lines = [
     "Crafting web wonders.",
     "From coffee to code.",

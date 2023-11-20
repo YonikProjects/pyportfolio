@@ -56,8 +56,8 @@
                         {% for preview in previews %}
                         <div class="img-container" style="background: none;"><a
                                 href="{{url_for('singleproject', link=preview.link)}}"><img
-                                    src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
-                                    loading="lazy" alt="{{preview.title}} Project"></a></div>
+                                    src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='mini')}}"
+                                    alt="{{preview.title}} Project"></a></div>
                         {% endfor %}
                     </div>
                     <button class="carousel-arrow right-arrow">

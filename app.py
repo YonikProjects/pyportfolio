@@ -1,7 +1,17 @@
 import random
+
+from enviroments import (
+    CMS,
+    TURNSTILE,
+    FROMEMAIL,
+    TOEMAIL,
+    SENDGRID,
+    PRERENDER,
+    CAPTAIN,
+    DEV,
+    CMSTOKEN,
+)
 from functools import lru_cache
-import os
-from dotenv import load_dotenv
 from flask import Flask, jsonify, redirect, render_template, request, url_for
 import requests
 from postpreviews import PostPreviews
@@ -9,39 +19,14 @@ from post import Post
 from sendgrid import SendGridAPIClient  # type: ignore
 from sendgrid.helpers.mail import Mail  # type: ignore
 
-try:
-    load_dotenv()
-except OSError as e:
-    raise SystemExit(f"Error loading .env file: {e}")
-
-required_envs = [
-    "CMS",
-    "TURNSTILE",
-    "SENDGRID",
-    "TOEMAIL",
-    "FROMEMAIL",
-    "DEV",
-    "PRERENDER",
-    "CAPTAIN",
-]
-
-for env in required_envs:
-    if env not in os.environ:
-        raise EnvironmentError(f"Required environment variable {env} not set.")
-
-CMS = os.environ["CMS"]
-TURNSTILE = os.environ["TURNSTILE"]
-SENDGRID = os.environ["SENDGRID"]
-TOEMAIL = os.environ["TOEMAIL"]
-FROMEMAIL = os.environ["FROMEMAIL"]
-DEV = os.environ["DEV"]
-PRERENDER = os.environ["PRERENDER"]
-CAPTAIN = os.environ["CAPTAIN"]
-
 
 @lru_cache(maxsize=128)  # Limiting cache size to 128 items
-def fetch_image(url):
-    response = requests.get(url)
+def fetch_image(url, auth=False):
+    if auth is False:
+        headers = {"Authorization": f"Bearer {CMSTOKEN}"}
+        response = requests.get(url, headers)
+    else:
+        response = requests.get(url)
     if response.status_code == 200:
         return response
     return None
@@ -121,8 +106,7 @@ def proxy_image(url, key):
     else:
         image_url = assets_url + url
     # Fetch the image content using the cache
-
-    image_content_with_headers = fetch_image(image_url)
+    image_content_with_headers = fetch_image(url=image_url, auth=True)
     content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
     image_content = image_content_with_headers.content  # type: ignore
 

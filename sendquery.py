@@ -1,11 +1,12 @@
-def get_data(query: str):
-    import os
-    from dotenv import load_dotenv
-    from sgqlc.endpoint.http import HTTPEndpoint  # ignore
+from functools import lru_cache
+from enviroments import CMS, CMSTOKEN
+from sgqlc.endpoint.http import HTTPEndpoint  # type: ignore
 
-    load_dotenv()
-    URL = os.getenv("CMS")
-    URL = URL + "graphql"
-    endpoint = HTTPEndpoint(URL)
+
+@lru_cache(maxsize=128)
+def get_data(query: str):
+    URL = CMS + "graphql"  # type: ignore
+    headers = {"Authorization": f"Bearer {CMSTOKEN}"}
+    endpoint = HTTPEndpoint(URL, base_headers=headers)
     data = endpoint(query)
     return data

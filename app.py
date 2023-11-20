@@ -9,7 +9,6 @@ from enviroments import (
     PRERENDER,
     CAPTAIN,
     DEV,
-    CMSTOKEN,
 )
 from functools import lru_cache
 from flask import Flask, jsonify, redirect, render_template, request, url_for
@@ -18,17 +17,18 @@ from postpreviews import PostPreviews
 from post import Post
 from sendgrid import SendGridAPIClient  # type: ignore
 from sendgrid.helpers.mail import Mail  # type: ignore
+import headers
 
 
 @lru_cache(maxsize=128)  # Limiting cache size to 128 items
 def fetch_image(url, auth=False):
-    if auth is False:
-        headers = {"Authorization": f"Bearer {CMSTOKEN}"}
-        response = requests.get(url, headers)
+    if auth is True:
+        response = requests.get(url, headers=headers.headers)
     else:
         response = requests.get(url)
     if response.status_code == 200:
         return response
+    print(response.status_code)
     return None
 
 
@@ -107,10 +107,10 @@ def proxy_image(url, key):
         image_url = assets_url + url
     # Fetch the image content using the cache
     image_content_with_headers = fetch_image(url=image_url, auth=True)
-    content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
-    image_content = image_content_with_headers.content  # type: ignore
 
-    if image_content:
+    if image_content_with_headers:
+        content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
+        image_content = image_content_with_headers.content  # type: ignore
         # Get the content type of the image
         content_type = image_content_with_headers.headers["content-disposition"]  # type: ignore
         # Set the appropriate content type for the response

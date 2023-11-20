@@ -6,17 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dima | Full-Stack Developer</title>
   <meta name="title" content="Dima | Full-Stack Developer" />
-  <meta name="description" content="Hello! I'm Dmitry, or 'Dima' to friends.
-    As a full-stack developer, I thrive in the digital realm, driven by
-    curiosity and a love for challenges." />
+  <meta name="description" content="{{info['index_short_text']}}" />
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="url_for(request.endpoint,
     _external=True, **request.view_args))" />
   <meta property="og:title" content="Dima | Full-Stack Developer" />
-  <meta property="og:description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
-      developer, I thrive in the digital realm, driven by curiosity and
-      a love for challenges." />
+  <meta property="og:description" content="{{info['index_short_text']}}" />
   <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
     _external=False, **request.view_args)) }}" />
   <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
@@ -32,21 +28,15 @@
   <div class="container hero">
     <div class="hero-container">
       <div class="image-container">
-        <img src="{{ url_for('static', filename='/dimaphoto.png') }}" alt="Dima" />
+        <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" alt="Dima" />
       </div>
       <div class="text-container">
         <div>
           <p id="variant1">
-            Hello! I'm Dmitry, or "Dima" to friends. As a full-stack
-            developer, I thrive in the digital realm, driven by curiosity and
-            a love for challenges.
+            {{info['index_short_text']}}
           </p>
           <p id="variant2">
-            Hello! I'm Dmitry, but my friends affectionately call me "Dima".
-            As a budding full-stack developer, the digital realm is my
-            playground. My journey in the tech world has been nothing short of
-            adventurous, fueled by my innate curiosity and a passion for
-            taking on new challenges.
+            {{info['index_long_text']}}
           </p>
         </div>
       </div>

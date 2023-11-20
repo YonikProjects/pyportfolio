@@ -2,43 +2,6 @@ const carouselTrack = document.querySelector(".carousel-track");
 const leftArrow = document.querySelector(".left-arrow");
 const rightArrow = document.querySelector(".right-arrow");
 
-const imageLinks = [
-  {
-    imgUrl: "/previews/car-expense-calculator.png",
-    href: "/projects/?car-expense-calculator",
-  },
-  { imgUrl: "/previews/aaaa-cats.png", href: "/projects/?aaaa-cats" },
-  { imgUrl: "/previews/doketz.png", href: "/projects/?doketz" },
-  { imgUrl: "/previews/icontrol.png", href: "/projects/?icontrol" },
-  // ... add more links as needed
-];
-
-function renderImages() {
-  imageLinks.forEach((link, index) => {
-    const href = document.createElement("a");
-    href.href = link.href;
-    const imgContainer = document.createElement("div");
-    imgContainer.className = "img-container";
-
-    const imgElem = document.createElement("img");
-    if (index < 4) {
-      // Load the first 4 images immediately (3 visible and 1 preloaded)
-      imgElem.src = link.imgUrl;
-    } else {
-      imgElem.dataset.src = link.imgUrl;
-    }
-    // imgElem.data-zoom-src = "";
-    imgElem.loading = "lazy";
-    imgElem.alt = `Image ${index + 1}`;
-    imgElem.onload = function () {
-      imgContainer.style.background = "none"; // Remove loading background after image load
-    };
-    href.appendChild(imgElem);
-    imgContainer.appendChild(href);
-    carouselTrack.appendChild(imgContainer);
-  });
-}
-
 function preloadNextImage(currentIndex) {
   const nextIndex = currentIndex + 3; // Because we are showing 3 images at a time
   if (nextIndex < imageLinks.length) {

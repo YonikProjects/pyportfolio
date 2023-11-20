@@ -1,4 +1,5 @@
 import random
+import sendquery
 from PIL import Image
 from io import BytesIO
 from enviroments import (
@@ -39,12 +40,37 @@ app = Flask(__name__, static_url_path="")
 @app.route("/")
 def index():
     previews = PostPreviews()
-    return render_template("index.j2", previews=previews.getPreviews())
+    info = sendquery.get_data(
+        """query {
+      static_profile 
+      {
+        index_long_text
+        index_short_text
+        Profile_Pic {id}
+      }
+    }"""
+    )
+    return render_template(
+        "index.j2", previews=previews.getPreviews(), info=info["data"]["static_profile"]
+    )
 
 
 @app.route("/about")
 def about():
-    return render_template("about.j2")
+    info = sendquery.get_data(
+        """query {
+      static_profile 
+      {
+        About_text
+        Profile_Pic {id}
+      }
+    }"""
+    )
+    return render_template(
+        "about.j2",
+        info=info["data"]["static_profile"],
+        previews=PostPreviews().getPreviews(),
+    )
 
 
 @app.route("/projects/")
@@ -92,7 +118,17 @@ def nextpost():
 
 @app.route("/projects/<string:link>")
 def pickproject(link):
-    return render_template("projects.j2", post=Post(link))
+    info = sendquery.get_data(
+        """query {
+      static_profile 
+      {
+        index_short_text
+      }
+    }"""
+    )
+    return render_template(
+        "projects.j2", post=Post(link), info=info["data"]["static_profile"]
+    )
 
 
 @app.route("/imgproxy/<string:key>/<string:url>")  # type: ignore

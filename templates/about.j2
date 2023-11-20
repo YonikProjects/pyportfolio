@@ -6,20 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dima | About</title>
     <meta name="title" content="Dima | About" />
-    <meta name="description" content="Hello! I'm Dmitry, or 'Dima' to friends. As a full-stack
-      developer, I thrive in the digital realm, driven by curiosity and
-      a love for challenges." />
+    <meta property="og:description" content="{{info['index_short_text']}}" />
+    <meta property="og:description" content="{{info['index_short_text']}}" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="url_for(request.endpoint,
     _external=True, **request.view_args))" />
     <meta property="og:title" content="Dima | About" />
 
-    <meta property="og:description" content="Hello! I'm Dmitry, but my friends
-    affectionately call me 'Dima'. As a budding full-stack developer, the
-    digital realm is my playground. My journey in the tech world has been
-    nothing short of adventurous, fueled by my innate curiosity and a passion
-    for taking on new challenges." />
     <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
     _external=False, **request.view_args)) }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
@@ -32,7 +27,7 @@
     <div class="about-container">
         <div class="about-container-left">
             <div class="about-content left">
-                <img src="{{ url_for('static', filename='/dimaphoto.png') }}" />
+                <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" />
                 <div>
                     <p>Dmitry</p>
                     <p>Poleshcuk</p>
@@ -52,41 +47,18 @@
             <div class="about-content right">
                 <p>About me</p>
                 <p class="subheader" id="quirk">Harmonizing code and Design</p>
-                <p>
-                    Hello! I'm Dmitry Poleshcuk, a 28-years-old passionate full-stack
-                    programmer who's recently made Holon my new home. With an unwavering
-                    enthusiasm for technology, I've always sought to expand my horizons
-                    and embrace new learning opportunities. My foundational expertise
-                    lies in Javascript and TypeScript, but my toolbelt doesn't end
-                    there.
-                </p>
-                <p>
-                    In the dynamic world of web development, I've dvelved deep into
-                    technologies such as NodeJS, utilizing various npm libraries, PHP,
-                    React, and Electron. My hands-on experience has allowed me to
-                    harness these tools effectively, crafting solutions that are both
-                    robust and efficient.
-                </p>
-                <p>
-                    My dedication to creating meaningful digital solutions is
-                    demonstrated through my professional journey. At my last workplace,
-                    I developed two instrumental NodeJS projects that transformed into
-                    core operational tools for the organization. Now, as I settle into
-                    Holon, I am on the lookout for my next exhilarating challenge, eager
-                    to bring innovation and value to new avenues.
-                </p>
-                <p>
-                    This Portfolio showscases latest work i've made in development. I
-                    built this website from practically scratch using Vite as a build
-                    tool to compress all vital components and SCSS to put every element
-                    exactly where it needs to be. Enjoy scrolling!
-                </p>
+                {{info["About_text"]}}
                 <div class="carousel">
                     <button class="carousel-arrow left-arrow">
                         <img src="{{ url_for('static', filename='/arrows/left.png') }}" />
                     </button>
                     <div class="carousel-track">
-                        <!-- Placeholder images for demonstration -->
+                        {% for preview in previews %}
+                        <div class="img-container" style="background: none;"><a
+                                href="{{url_for('singleproject', link=preview.link)}}"><img
+                                    src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
+                                    loading="lazy" alt="{{preview.title}} Project"></a></div>
+                        {% endfor %}
                     </div>
                     <button class="carousel-arrow right-arrow">
                         <img src="{{ url_for('static', filename='/arrows/right.png') }}" />

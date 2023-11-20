@@ -82,7 +82,6 @@ class Post:
             return id
         else:
             new_list = self.get_post_ids()
-            print(new_list)
             randomized = random.choice(new_list)
             new_list.remove(randomized)
             self.all_post_ids = new_list

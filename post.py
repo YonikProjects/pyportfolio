@@ -7,7 +7,13 @@ from bs4 import BeautifulSoup  # type: ignore
 
 class Post:
     def __init__(self, link):
-        self.link = link
+        self.all_post_ids = self.get_post_ids()
+        self.id = self.get_id_from_link(link)
+        post_result = sendquery.get_data(self.get_id_query(self.id))
+        post_bracketed = post_result["data"]["post_by_id"]
+        self.post = post_bracketed
+
+    def get_post_ids(self):
         all_post_ids = sendquery.get_data(
             """query {
   post {
@@ -19,11 +25,7 @@ class Post:
   }
 }"""
         )
-        self.all_post_ids = all_post_ids["data"]["post"]
-        self.id = self.get_id_from_link()
-        post_result = sendquery.get_data(self.get_id_query(self.id))
-        post_bracketed = post_result["data"]["post_by_id"]
-        self.post = post_bracketed
+        return all_post_ids["data"]["post"]
 
     def get_id_query(self, id):
         return """query {
@@ -70,16 +72,17 @@ class Post:
         random.shuffle(new_list)
         return new_list
 
-    def get_id_from_link(self):
+    def get_id_from_link(self, link):
         matching_dict = next(
-            (item for item in self.all_post_ids if item["link"] == self.link), None
+            (item for item in self.all_post_ids if item["link"] == link), None
         )
         if matching_dict:
             self.all_post_ids.remove(matching_dict)
             id = matching_dict["id"]
             return id
         else:
-            new_list = self.all_post_ids
+            new_list = self.get_post_ids()
+            print(new_list)
             randomized = random.choice(new_list)
             new_list.remove(randomized)
             self.all_post_ids = new_list

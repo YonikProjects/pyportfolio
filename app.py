@@ -48,15 +48,13 @@ def about():
 
 @app.route("/projects/")
 def projects():
-    previews = PostPreviews()
-    post = random.choice(previews.getPreviews())
+    post = random.choice(PostPreviews().getPreviews())
     return redirect(url_for("singleproject", link=post["link"]), 303)
 
 
 @app.route("/projects/<string:link>", methods=["POST"])
 def singleproject(link):
-    post = Post(link)
-    return render_template("components/post.j2", post=post)
+    return render_template("components/post.j2", post=Post(link))
 
 
 @app.route("/pform", methods=["POST"])
@@ -93,8 +91,7 @@ def nextpost():
 
 @app.route("/projects/<string:link>")
 def pickproject(link):
-    post = Post(link)
-    return render_template("projects.j2", post=post)
+    return render_template("projects.j2", post=Post(link))
 
 
 @app.route("/imgproxy/<string:key>/<string:url>")  # type: ignore

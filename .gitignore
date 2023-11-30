@@ -1,5 +1,6 @@
 .venv/
 .mypy_cache/
 out/
+typings/
 .env
 __pycache__/

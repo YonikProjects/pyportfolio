@@ -17,8 +17,8 @@ from flask import Flask, jsonify, redirect, render_template, request, url_for
 import requests
 from postpreviews import PostPreviews
 from post import Post
-from sendgrid import SendGridAPIClient  # type: ignore
-from sendgrid.helpers.mail import Mail  # type: ignore
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import headers
 
 
@@ -31,7 +31,7 @@ def fetch_image(url, auth=False):
     if response.status_code == 200:
         return response
     print(response.status_code)
-    return None
+    raise Exception("This is a generic error message")
 
 
 app = Flask(__name__, static_url_path="")
@@ -131,7 +131,7 @@ def pickproject(link):
     )
 
 
-@app.route("/imgproxy/<string:key>/<string:url>")  # type: ignore
+@app.route("/imgproxy/<string:key>/<string:url>")
 def proxy_image(url, key):
     # Replace 'image_url' with the URL of the image you want to proxy
     assets_url = CMS + "assets/"
@@ -143,8 +143,8 @@ def proxy_image(url, key):
     image_content_with_headers = fetch_image(url=image_url, auth=True)
 
     if image_content_with_headers:
-        content_disposition = image_content_with_headers.headers["content-disposition"]  # type: ignore
-        image_content = image_content_with_headers.content  # type: ignore
+        content_disposition = image_content_with_headers.headers["content-disposition"]
+        image_content = image_content_with_headers.content
         # Get the content type of the image
         image = Image.open(BytesIO(image_content))
         webp_buffer = BytesIO()
@@ -172,11 +172,11 @@ def take_screenshot(width, height):
     # Fetch the image content using the cache
 
     image_content_with_headers = fetch_image(url)
-    image_content = image_content_with_headers.content  # type: ignore
+    image_content = image_content_with_headers.content
 
     if image_content:
         # Get the content type of the image
-        response = image_content_with_headers.headers  # type: ignore
+        response = image_content_with_headers.headers
         content_type = response["content-type"]
         # Set the appropriate content type for the response
         headers = {
@@ -192,6 +192,6 @@ if __name__ == "__main__":
     if DEV == "True":
         app.run(port=8000, debug=True)
     else:
-        from waitress import serve  # type: ignore
+        from waitress import serve
 
         serve(app, port=5000, threads=12)

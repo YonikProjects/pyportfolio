@@ -1,8 +1,8 @@
 from flask import url_for
 import sendquery
-import markdown  # type: ignore
+import markdown
 import random
-from bs4 import BeautifulSoup  # type: ignore
+from bs4 import BeautifulSoup
 
 
 class Post:

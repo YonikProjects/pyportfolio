@@ -27,15 +27,15 @@
   {% for preview in previews %}
   <div class="content-box" style="background-color:{{preview.background_color}} ;">
     <div class="animation-box">
-      <a href="{{url_for('singleproject', link=preview.link)}}" {% if loop.index0!=0 and loop.index0%2==0
-        %}data-aos="fade-left" {%else %}data-aos="fade-right" {% endif %} data-aos-delay="300">
+      <a href="{{url_for('singleproject', link=preview.link)}}" {% if loop.index0 !=0 and loop.index0%2==0
+        %}data-aos="fade-left" {%elif loop.index0%2 !=0 %}data-aos="fade-right" {% endif %} data-aos-delay="300">
         <div class="content-top" {% if loop.index0==0 %}data-aos="fade-right" {% endif %} data-aos-delay="300">
           <p>{{preview.title}}</p>
           {% if preview.subname %}
           <p class="sub-text">{{preview.subname}}</p>
           {% endif %}
         </div>
-        <div class="content-bottom" {% if loop.index0==0 %}data-aos="zoom-in-left" {% endif %} data-aos-delay="300">
+        <div class="content-bottom" {% if loop.index0==0 %}data-aos="fade-left" {% endif %} data-aos-delay="300">
           {%- if loop.index == 1 %}
           <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
             alt="{{preview.title}} Project" />

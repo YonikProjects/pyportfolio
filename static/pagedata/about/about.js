@@ -8,7 +8,7 @@ carouselTrack.addEventListener("scroll", () => {
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => {
     let scrollLeft = carouselTrack.scrollLeft;
-    const imgWidth = carouselTrack.clientWidth / 3;
+    const imgWidth = carouselTrack.clientWidth / 2;
 
     const activeIndex = Math.round(scrollLeft / imgWidth);
     carouselTrack.scrollLeft = activeIndex * imgWidth;
@@ -24,7 +24,7 @@ rightArrow.addEventListener("click", () => {
 });
 
 function slide(direction) {
-  const imgWidth = carouselTrack.clientWidth / 3;
+  const imgWidth = carouselTrack.clientWidth / 2;
   let scrollLeft = carouselTrack.scrollLeft;
   carouselTrack.scrollLeft = scrollLeft + imgWidth * direction;
 }

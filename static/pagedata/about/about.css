@@ -82,6 +82,7 @@ body {
   .about-container .about-container-right > div {
     margin: 0 5%;
   }
+
   .about-container > div .about-content.left {
     display: flex;
     flex-direction: column;
@@ -135,7 +136,7 @@ body {
 .img-container {
   position: relative;
   height: 100%;
-  min-width: 43.4782608696%;
+  min-width: 70%;
   background-size: cover;
 }
 .img-container img {

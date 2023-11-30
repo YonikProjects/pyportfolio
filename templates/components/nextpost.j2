@@ -1,7 +1,7 @@
 <div class="next-post next-trigger" style="background-color: {{post.background_color}}; color: {{post.Text_Color}};"
     hx-post="{{url_for('singleproject', link=post.link)}}" hx-trigger="revealed" hx-swap="afterend">
-    <div data-aos="fade-down">
+    <div data-aos="fade-down" data-aos-offset="20">
         <p>Next Project: {{ post.title }}</p>
     </div><img {% if post.Text_Color=="#000000" %} style="filter: invert(1)" {% endif %}
-        src="{{ url_for('static', filename='/arrows/down.webp') }}" data-aos="fade-down" />
+        src="{{ url_for('static', filename='/arrows/down.webp') }}" data-aos="fade-down" data-aos-offset="20" />
 </div>

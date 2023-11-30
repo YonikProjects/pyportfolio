@@ -1,73 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+{% with info=info, title="About", white=True %}
+{% include 'components/header.j2' %}
+{% endwith %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dima | About</title>
-    <meta name="title" content="Dima | About" />
-    <meta property="og:description" content="{{info['index_short_text']}}" />
-    <meta property="og:description" content="{{info['index_short_text']}}" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="url_for(request.endpoint,
-    _external=True, **request.view_args))" />
-    <meta property="og:title" content="Dima | About" />
-
-    <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
-    _external=False, **request.view_args)) }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/about/about.css') }}" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-</head>
-
-<body>
-    <div class="topnav" id="myTopnav"> {% include 'components/navbar.j2' %}
-    </div>
-    <div class="about-container">
-        <div class="about-container-left">
-            <div class="about-content left">
-                <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" />
-                <div>
-                    <p>Dmitry</p>
-                    <p>Poleshcuk</p>
-                    <p class="p-pronouns">(He/Him)</p>
-                    <p class="p-profession">Web Developer</p>
-                    <br />
-                    <div class="social-icons">
-                        <a href="https://wa.me/972528706038">
-                            <img src="{{ url_for('static', filename='/icons/whatsapp.webp') }}" /></a><a
-                            href="mailto:dima@dmitrypol.com"><img
-                                src="{{ url_for('static', filename='/icons/mail.webp') }}" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="about-container-right">
-            <div class="about-content right">
-                <p>About me</p>
-                <p class="subheader" id="quirk">Harmonizing code and Design</p>
-                {{info["About_text"]}}
-                <div class="carousel">
-                    <button class="carousel-arrow left-arrow">
-                        <img src="{{ url_for('static', filename='/arrows/left.webp') }}" />
-                    </button>
-                    <div class="carousel-track">
-                        {% for preview in previews %}
-                        <div class="img-container" style="background: none;"><a
-                                href="{{url_for('singleproject', link=preview.link)}}"><img
-                                    src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='mini')}}"
-                                    alt="{{preview.title}} Project"></a></div>
-                        {% endfor %}
-                    </div>
-                    <button class="carousel-arrow right-arrow">
-                        <img src="{{ url_for('static', filename='/arrows/right.webp') }}" />
-                    </button>
+<div class="about-container">
+    <div class="about-container-left" data-aos="fade-right">
+        <div class="about-content left">
+            <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" />
+            <div>
+                <p>Dmitry</p>
+                <p>Poleshcuk</p>
+                <p class="p-pronouns">(He/Him)</p>
+                <p class="p-profession">Web Developer</p>
+                <br />
+                <div class="social-icons">
+                    <a href="https://wa.me/972528706038">
+                        <img src="{{ url_for('static', filename='/icons/whatsapp.webp') }}" /></a><a
+                        href="mailto:dima@dmitrypol.com"><img
+                            src="{{ url_for('static', filename='/icons/mail.webp') }}" /></a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='/pagedata/about/about.js') }}"></script>
-</body>
-
-</html>
+    <div class="about-container-right" data-aos="fade-down">
+        <div class="about-content right">
+            <p>About me</p>
+            <p class="subheader" id="quirk">Harmonizing code and Design</p>
+            {{info["About_text"]}}
+            <div class="carousel">
+                <button class="carousel-arrow left-arrow">
+                    <img src="{{ url_for('static', filename='/arrows/left.webp') }}" />
+                </button>
+                <div class="carousel-track">
+                    {% for preview in previews %}
+                    <div class="img-container" style="background: none;"><a
+                            href="{{url_for('singleproject', link=preview.link)}}"><img
+                                src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='mini')}}"
+                                alt="{{preview.title}} Project"></a></div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-arrow right-arrow">
+                    <img src="{{ url_for('static', filename='/arrows/right.webp') }}" />
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='/pagedata/about/about.js') }}"></script>
+{% include "components/animation.j2" %}

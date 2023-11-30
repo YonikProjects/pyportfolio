@@ -1,77 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dima | Full-Stack Developer</title>
-  <meta name="title" content="Dima | Full-Stack Developer" />
-  <meta name="description" content="{{info['index_short_text']}}" />
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="url_for(request.endpoint,
-    _external=True, **request.view_args))" />
-  <meta property="og:title" content="Dima | Full-Stack Developer" />
-  <meta property="og:description" content="{{info['index_short_text']}}" />
-  <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
-    _external=False, **request.view_args)) }}" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/style.css') }}" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/samsung.css') }}" />
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
-</head>
-
-<body>
-  <div class="topnav" id="myTopnav">
-    {% include '/components/navbar.j2' %}
-  </div>
-  <div class="container hero">
-    <div class="hero-container">
-      <div class="image-container">
-        <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" alt="Dima" />
+{% with info=info, title="Full-Stack Developer", white=True %}
+{% include 'components/header.j2' %}
+{% endwith %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/style.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/index/samsung.css') }}" />
+<div class="container hero" data-aos="fade-up">
+  <div class="hero-container">
+    <div class="image-container">
+      <img src="{{ url_for('proxy_image', url=info.Profile_Pic['id'], key='fullsize' )}}" alt="Dima" />
+    </div>
+    <div class="text-container">
+      <div>
+        <p id="variant1">
+          {{info['index_short_text']}}
+        </p>
+        <p id="variant2">
+          {{info['index_long_text']}}
+        </p>
       </div>
-      <div class="text-container">
-        <div>
-          <p id="variant1">
-            {{info['index_short_text']}}
-          </p>
-          <p id="variant2">
-            {{info['index_long_text']}}
-          </p>
+    </div>
+  </div>
+  <div class="scroll-container">
+    <p id="scrollText">Scroll down for more!</p>
+  </div>
+</div>
+<div class="container-content" id="projects">
+  {% for preview in previews %}
+  <div class="content-box" style="background-color:{{preview.background_color}} ;">
+    <div class="animation-box">
+      <a href="{{url_for('singleproject', link=preview.link)}}" {% if loop.index0!=0 and loop.index0%2==0
+        %}data-aos="fade-left" {%else %}data-aos="fade-right" {% endif %} data-aos-delay="300">
+        <div class="content-top" {% if loop.index0==0 %}data-aos="fade-right" {% endif %} data-aos-delay="300">
+          <p>{{preview.title}}</p>
+          {% if preview.subname %}
+          <p class="sub-text">{{preview.subname}}</p>
+          {% endif %}
         </div>
-      </div>
-    </div>
-    <div class="scroll-container">
-      <p id="scrollText">Scroll down for more!</p>
+        <div class="content-bottom" {% if loop.index0==0 %}data-aos="zoom-in-left" {% endif %} data-aos-delay="300">
+          {%- if loop.index == 1 %}
+          <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
+            alt="{{preview.title}} Project" />
+          {% else %}
+          <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='thumbnails')}}"
+            alt="{{preview.title}} Project" />
+          {% endif %}
+        </div>
+      </a>
     </div>
   </div>
-  <div class="container-content" id="projects">
-    {% for preview in previews %}
-    <div class="content-box" style="background-color:{{preview.background_color}} ;">
-      <div class="animation-box">
-        <a href="{{url_for('singleproject', link=preview.link)}}">
-          <div class="content-top">
-            <p>{{preview.title}}</p>
-            {% if preview.subname %}
-            <p class="sub-text">{{preview.subname}}</p>
-            {% endif %}
-          </div>
-          <div class="content-bottom">
-            {%- if loop.index == 1 %}
-            <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='bigthumbnail')}}"
-              alt="{{preview.title}} Project" />
-            {% else %}
-            <img src="{{url_for('proxy_image', url=preview.Title_Image['id'], key='thumbnails')}}"
-              alt="{{preview.title}} Project" />
-            {% endif %}
-          </div>
-        </a>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-  <div class="contact-form" id="contact">{% include '/components/form.j2' %}</div>
-  <script src="{{ url_for('static', filename='/pagedata/index/samsung.js') }}"></script>
-</body>
-
-</html>
+  {% endfor %}
+</div>
+<div class="contact-form" id="contact" data-aos="zoom-out-up">{% include '/components/form.j2' %}</div>
+<script src="{{ url_for('static', filename='/pagedata/index/samsung.js') }}"></script>
+{% include "components/animation.j2" %}

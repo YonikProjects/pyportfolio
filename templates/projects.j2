@@ -1,45 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dima | Projects</title>
-  <meta name="title" content="Dima | Projects" />
-  <meta name="description" content="{{info['index_short_text']}}" />
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{url_for(request.endpoint,
-    _external=True, **request.view_args)}}" />
-  <meta property="og:title" content="Dima | Projects" />
-  <meta property="og:description" content="{{info['index_short_text']}}" />
-  <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
-    _external=False, **request.view_args)) }}" />
-  <link rel=" shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/projects/projects.css') }}" />
-
-</head>
+{% with info=info, title="Projects", white=(post.post.Text_Color == '#FFFFFF') %}
+{% include 'components/header.j2' %}
+{% endwith %}
 
 <body style="background-color: {{ post.post.background_color }};">
-  <div class="topnav {% if post.post.Text_Color == '#FFFFFF' %}
-    white
-{% else %}
-    black
-{% endif %}" id="myTopnav"> {% include '/components/navbar.j2' %}
-  </div>
-  <div class="single-post-container">{% with post=post %}
-    {% include "components/post.j2" %}
-    {% endwith %}
-
-  </div>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/pagedata/projects/projects.css') }}" />
+  <main data-barba="container" data-barba-namespace="home">
+    <div class="single-post-container">{% with post=post %}
+      {% include "components/post.j2" %}
+      {% endwith %}
+    </div>
+  </main>
   <script>
     let nextPost = {{ post.remaining_post_ids() }};
   </script>
-
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script>barba.init({
+      transitions: [{
+        name: 'opacity-transition',
+        leave(data) {
+          return gsap.to(data.current.container, {
+            opacity: 0
+          });
+        },
+        enter(data) {
+          return gsap.from(data.next.container, {
+            opacity: 0
+          });
+        }
+      }]
+    });</script>
   <script src="{{ url_for('static', filename='/scripts/zoom.js') }}"></script>
   <script src="{{ url_for('static', filename='/pagedata/projects/projects.js') }}"></script>
   <script src="{{ url_for('static', filename='/pagedata/index/samsung.js') }}"></script>
   <script src="{{ url_for('static', filename='/scripts/htmx.min.js') }}"></script>
+  {% include "components/animation.j2" %}
 </body>
-
-</html>

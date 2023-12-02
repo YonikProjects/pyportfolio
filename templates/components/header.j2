@@ -9,8 +9,8 @@
     <meta name="description" content="{{info['index_short_text']}}" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="url_for(request.endpoint,
-    _external=True, **request.view_args))" />
+    <meta property="og:url" content="{{url_for(request.endpoint,
+    _external=True, **request.view_args))}}" />
     <meta property="og:title" content="Dima | {{title}}" />
     <meta property="og:description" content="{{info['index_short_text']}}" />
     <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,

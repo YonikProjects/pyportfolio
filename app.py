@@ -24,14 +24,19 @@ import headers
 
 @lru_cache(maxsize=128)  # Limiting cache size to 128 items
 def fetch_image(url, auth=False):
-    if auth is True:
-        response = requests.get(url, headers=headers.headers)
-    else:
-        response = requests.get(url)
-    if response.status_code == 200:
-        return response
-    print(response.status_code)
-    raise Exception("This is a generic error message")
+    try:
+        if auth is True:
+            response = requests.get(url, headers=headers.headers)
+        else:
+            response = requests.get(url)
+        if response.status_code == 200:
+            return response
+        else:
+            print(response.status_code)
+            return None
+    except Exception as e:
+        print(e)
+        return None
 
 
 app = Flask(__name__, static_url_path="")
@@ -172,10 +177,10 @@ def take_screenshot(width, height):
     # Fetch the image content using the cache
 
     image_content_with_headers = fetch_image(url)
-    image_content = image_content_with_headers.content
 
-    if image_content:
+    if image_content_with_headers:
         # Get the content type of the image
+        image_content = image_content_with_headers.content
         response = image_content_with_headers.headers
         content_type = response["content-type"]
         # Set the appropriate content type for the response

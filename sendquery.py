@@ -7,5 +7,5 @@ def get_data(query: str):
     URL = CMS + "graphql"
     endpoint = HTTPEndpoint(URL, base_headers=headers)
     data = endpoint(query)
-    print(data)
+    # print(data)
     return data

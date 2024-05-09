@@ -169,10 +169,10 @@ def proxy_image(url, key):
 @app.route("/screenshot/<int:width>/<int:height>")
 def take_screenshot(width, height):
     link = request.args.get("url")
-    if link == "/":
+    if link == "/" or link is None:
         link = ""
     url = f"{PRERENDER}render?height={height}&width={width}&renderType=png&url={CAPTAIN}{link}"
-    print(url)
+    # print(url)
 
     # Fetch the image content using the cache
 

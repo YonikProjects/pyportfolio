@@ -14,7 +14,7 @@
     <meta property="og:title" content="Dima | {{title}}" />
     <meta property="og:description" content="{{info['index_short_text']}}" />
     <meta property="og:image" content="{{ url_for('take_screenshot', width=1200, height=630, url=url_for(request.endpoint,
-    _external=False, **request.view_args)) }}" />
+    _external=True, **request.view_args)) }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='/favicon.ico') }}">
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='/scripts/aos.css') }}" />
